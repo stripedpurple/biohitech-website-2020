@@ -1,0 +1,314 @@
+@import '~bulma/sass/utilities/initial-variables'
+@import '~bulma/sass/utilities/functions'
+
+$primary: #333333
+$primary-invert: findColorInvert($primary)
+$blue: #2999c9
+$green: #79bb47
+$light: #f7f7f7
+$link: darken($blue,5%)
+$info: $blue
+$easing: ease-in-out
+$radius-small: 0
+$radius: 0
+$radius-large: 0
+$size-0: 4rem
+//$navbar-breakpoint: 1100px !default
+
+@import '~bulma'
+
+*
+  overscroll-behavior: none
+@media screen and (max-width: 768px)
+  .title
+    font-size: 1.25rem !important
+  .subtitle
+    font-size: 0.75rem !important
+  .is-size-1
+    font-size: 2rem !important
+  .is-size-2
+    font-size: 1.75rem !important
+  .is-size-3
+    font-size: 1.5rem !important
+  .is-size-4
+    font-size: 1.25rem !important
+  .is-size-5
+    font-size: 1rem !important
+  .is-size-6
+    font-size: 0.75rem !important
+  .is-size-7
+    font-size: 0.5rem !important
+
+body
+  padding: 0
+  margin: 0
+  overscroll-behavior: none
+  -ms-overflow-style: none  /* IE and Edge */
+  scrollbar-width: none  /* Firefox */
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif
+  background: white
+  color: #666
+
+  &::-webkit-scrollbar
+    display: none
+
+h1, h2, h3, h4, h5, h6, .title, .subtitle
+  font-family: Poppins, "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif
+
+div, p
+  font-size: 20px
+  @media screen and (min-width: 769px)
+    line-height: 150%
+
+.main-content
+  margin-top: 3.2rem
+  @media screen and (min-width: 1025px)
+    margin-top: 5.2rem
+
+.message p:not(.default)
+  margin: unset !important
+  color: unset !important
+  text-align: unset !important
+
+@media screen and (min-width: 769px)
+  p:not(.title, .subtitle, .default)
+    text-align: justify
+p:not(.title, .subtitle, .default)
+  margin-bottom: 1rem
+  color: #666666
+p
+  color: inherit
+
+.subtitle
+  text-transform: uppercase
+  color: $grey
+  letter-spacing: .3rem
+
+.is-poppins
+  font-family: Poppins, "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif
+
+.has-background-primary,
+.has-background-info
+  color: $primary-invert
+
+  *
+    color: inherit
+
+  a
+    color: $link
+
+
+.section
+  content-visibilty: auto
+  @media screen and (min-width: 769px)
+    padding: 7rem 1.5rem
+
+
+.hero
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+  display: grid
+  align-items: center
+  justify-content: center
+  grid-template-columns: 1fr
+  padding: 0 1.5rem
+
+  @media screen and (min-width: 1344px)
+    grid-template-columns: 1344px
+
+  @media screen and (min-width: 1152px) and (max-width: 1343px)
+    grid-template-columns: 1152px
+
+  @media screen and (min-width: 960px) and (max-width: 1151px)
+    grid-template-columns: 960px
+
+  .hero-body
+    padding: 0
+    max-width: 1200px
+
+  .button.is-large
+    font-size: 20px
+    padding: 1.75rem 2.5rem
+
+  &.is-large
+    height: 55rem
+    max-height: calc(100vh - 3rem)
+    @media screen and (min-width: 2161px)
+      height: 75rem
+
+  &.is-medium
+    height: 35rem
+    max-height: calc(50vh - 3rem)
+
+.navbar.is-dark
+  .navbar-brand > a.navbar-item:focus,
+  .navbar-brand > a.navbar-item:hover
+    background: none
+  .dropdown-trigger
+    .navbar-item
+      padding-right: 1rem
+
+  .dropdown-menu
+    @media screen and (min-width: 1024px)
+      margin-left: 100%
+      margin-top: -2.5rem
+
+.has-margin-auto
+  margin: auto
+
+
+.box.float
+  border: none
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.25)
+  border-radius: 1rem
+  height: 100%
+  p
+    text-align: center
+
+
+@media screen and (min-width: 961px)
+  .box.float
+    padding: 2rem
+
+
+.is-size-0
+  font-size: $size-0
+
+
+.buttons .button
+  @media screen and (max-width: 768px)
+    margin-right: 0 !important
+.button
+  transition: all ease-in-out 0.3s
+  padding: 1.25rem 1.5rem
+
+  @media screen and (max-width: 768px)
+    width: 100%
+
+.is-normal
+  text-transform: unset
+
+.dialog .modal-card .modal-card-foot .button
+  display: inherit
+
+.card *
+  text-align: left
+
+.editor
+  &.disabled
+    .ProseMirror.ProseMirror-focused:focus,
+    .ProseMirror.ProseMirror-focused:active,
+    .ProseMirror:focus,
+    .ProseMirror:active
+      border: none !important
+      outline: none !important
+
+.ProseMirror[contenteditable="false"]
+  padding: 0 !important
+  border: none
+
+  &:not(.disabled)
+    .ProseMirror
+      border: 1px solid #dbdbdb
+      padding: 1rem 1.5rem !important
+
+input[type='submit'].button
+  line-height: 0
+
+
+.message
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.25)
+
+
+.is-primary-invert
+  color: $primary-invert
+
+=hero-bg($name,$img, $x, $y, $size, $color)
+  .hero-#{$name}
+    color: findColorInvert($color) !important
+    background-size: $size !important
+    background-color: $color !important
+    background: $color url('/img/banner/#{$img}-768.jpg') $x $y no-repeat
+    @media screen and (min-width: 768px)
+      background: $color url('/img/banner/#{$img}-1200.jpg') $x $y no-repeat
+    @media screen and (min-width: 1200px)
+      background: $color url('/img/banner/#{$img}-1920.jpg') $x $y no-repeat
+    @media screen and (min-width: 1920px)
+      background: $color url('/img/banner/#{$img}-3840.jpg') $x $y no-repeat
+    *
+      color: inherit
+
+
+
++hero-bg('tree-in-hand', 'tree-hand', bottom, right, cover, #333)
++hero-bg('careers', 'joanna-kosinska-1_CMoFsPfso-unsplash', bottom, right, contain, #D51F12)
++hero-bg('healthcare', 'AdobeStock_216607881', center, right, cover, #838753)
++hero-bg('cruise-ships', 'joanna-kosinska-1_CMoFsPfso-unsplash', bottom, right, cover, #333)
++hero-bg('city', 'municipal-waste-banner', bottom, center, cover, #333)
++hero-bg('restaurants', 'restaurants-banner', center, center, cover, #6e1826)
++hero-bg('cloud', 'cloud-banner', bottom, right, contain, #231f36)
++hero-bg('leaf-in-hand', 'AdobeStock_136145727', bottom, center, cover, #6a9ca2)
++hero-bg('school-children', 'school-children', center, left, cover, #333)
++hero-bg('heart-tree', 'heart-tree', bottom, center, cover, #352f31)
++hero-bg('cruise', 'cruise-banner', center, center, cover, #3d9fbe)
++hero-bg('corporate', 'corporate-banner', center, center, cover, #4f676d)
++hero-bg('retirement-communities', 'retirement-communities-banner', center, center, cover, #808b82)
++hero-bg('schools', 'schools-banner', center, center, cover, #4d454d)
+
+
+.tabs
+  border: none
+  margin-bottom: 0.5rem !important
+
+  ul
+    border-color: transparent
+  &.is-button li
+    padding-bottom: 1.5rem
+
+    &:not(:last-child)
+      margin-right: 1rem
+    a
+      border: 1px solid $primary
+      background-color: $primary-invert
+      color: $primary
+      position: relative
+      overflow: visible
+
+    &.is-active a
+      background-color: $primary
+      border-color: $primary
+      color: $primary-invert
+      z-index: 1
+
+    &.is-active a:before
+      position: absolute
+      transform: rotate(45deg)
+      background: $primary
+      content: ''
+      padding: 1rem
+      bottom: -1rem
+      z-index: -1
+
+.button.chat
+  margin-bottom: 2rem
+  z-index: 1
+
+.button.chat:before
+  position: absolute
+  transform: rotate(45deg)
+  background: inherit
+  content: ''
+  padding: 0.75rem
+  bottom: -0.75rem
+  z-index: -1
+
+
+
+.pr-4-tablet
+  @media screen and (min-width: $tablet)
+    padding-right: 1rem
+.pl-4-tablet
+  @media screen and (min-width: $tablet)
+    padding-left: 1rem
