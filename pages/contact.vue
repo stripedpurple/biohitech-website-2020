@@ -144,41 +144,7 @@
     },
     methods: {
       async onSubmit() {
-        if (this.isLoading === true) return;
-
-        if (this.formData.message.split(' ').length <= 1) return this.$buefy.toast.open({
-          message: 'Please provide more detail in your message!',
-          type: 'is-danger',
-          duration: 3500,
-          queue: false
-        })
-
-        this.isLoading = true;
-
-        try {
-          const token = await this.$recaptcha.execute('submit');
-
-          if (!!token) {
-            this.$axios.post('/contact', this.formData).then(res => {
-              this.complete = true;
-
-            }).catch(err => {
-              this.$buefy.toast.open({
-                message: 'An error occurred while sending your info! Please try again later.',
-                type: 'is-danger'
-              })
-            })
-          }
-        } catch (error) {
-          this.$buefy.toast.open({
-            message: 'Recaptcha failed!',
-            type: 'is-danger'
-          })
-        }
-
-        fbq('track', 'Lead');
-
-        this.isLoading = false
+        alert('Thanks for test the contact on this demo form')
       },
     },
     watch: {

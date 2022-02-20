@@ -102,7 +102,7 @@
       </div>
 
     <footer>
-        <p class="default is-size-6-tablet">BioHiTech Global © 2020 All Rights Reserved Company &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<nuxt-link to="/admin">Admin Login</nuxt-link></p>
+        <p class="default is-size-6-tablet">BioHiTech Global © 2020 All Rights Reserved Company &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Made with <b-icon icon="heart" size="is-small" class="has-text-danger"/> <a href="https://stripedpurple.io" target="_blank" rel="noopener">Striped Purple</a></p>
     </footer>
     </div>
   </section>

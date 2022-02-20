@@ -46,12 +46,6 @@
                 <nuxt-link :to="`/news/${article.slug}`" class="button is-primary">
                   Continue Reading
                 </nuxt-link>
-                <b-button type="is-danger" @click="confirmDelete(article._id)" v-if="!!$auth.user">
-                  <b-icon icon="delete"/>
-                </b-button>
-                <nuxt-link :to="`/news/edit?post=${article.slug}`" class="button is-info" v-if="!!$auth.user">
-                  <b-icon icon="pencil"/>
-                </nuxt-link>
               </div>
             </div>
           </div>
@@ -82,6 +76,7 @@
 </template>
 
 <script>
+import news from "~/pages/news/inde";
   export default {
     name: "index",
     data() {
@@ -124,30 +119,6 @@
       }
     },
     methods: {
-      confirmDelete(deleteKey) {
-        this.$buefy.dialog.confirm({
-          title: 'Deleting Job Posting',
-          message: 'Are you sure you want to <b>delete</b> this job? This action cannot be undone.',
-          confirmText: 'Delete',
-          type: 'is-danger',
-          hasIcon: true,
-          onConfirm: () => this.deleteJob(deleteKey)
-        })
-      },
-      deleteJob(deleteKey) {
-        this.$axios.delete(`/news/deleteById/${deleteKey}`).then(res => {
-          if (res.status == 200) {
-            this.$buefy.toast.open({type: 'is-success', message: 'Post deleted!'});
-            this.news = this.news.filter(x => x._id !== deleteKey)
-          } else {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting post!'});
-          }
-        }).catch(err => {
-          if (err) {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting post!'});
-          }
-        })
-      },
       getFilteredTags(text) {
         text = text.toLowerCase();
         return this.filteredTags = this.allTags.filter((option) => {
