@@ -15,9 +15,6 @@
             </div>
 
             <BackButton/>
-            <nuxt-link :to="`/news/edit?post=${story.slug}`" class="button is-info" v-if="!!$auth.user">
-              <b-icon icon="pencil"/>&nbsp;&nbsp;&nbsp;&nbsp;Edit Story
-            </nuxt-link>
           </div>
           <div class="column is-3-desktop is-full">
             <tag-cloud :articleTags="story.tags" :allTags="allTags"/>

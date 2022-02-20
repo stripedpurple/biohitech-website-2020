@@ -115,9 +115,9 @@
           About
         </b-navbar-item>
 
-        <b-navbar-item tag="nuxt-link" to="/careers">
-          Careers
-        </b-navbar-item>
+<!--        <b-navbar-item tag="nuxt-link" to="/careers">-->
+<!--          Careers-->
+<!--        </b-navbar-item>-->
 
         <b-dropdown :triggers="['hover', 'click']" aria-role="list" class="is-hidden-touch">
           <a class="navbar-item" slot="trigger">Media
@@ -138,8 +138,7 @@
           </b-dropdown-item>
 
           <b-dropdown-item has-link aria-role="menuitem">
-            <b-navbar-item href="https://investors.biohitechglobal.com/news-releases"
-                           target="_blank" rel="noopener nofollow">
+            <b-navbar-item @click="alert('Link nolonger available')">
               Press Releases
             </b-navbar-item>
           </b-dropdown-item>
@@ -158,9 +157,7 @@
             News
           </b-navbar-item>
 
-          <b-navbar-item class="navbar-item is-indented has-background-light is-hidden-desktop"
-                         href="https://investors.biohitechglobal.com/news-releases"
-                         target="_blank" rel="noopener nofollow">
+          <b-navbar-item class="navbar-item is-indented has-background-light is-hidden-desktop" @click="alert('Link no longer available')">
             Press Releases
           </b-navbar-item>
 
@@ -181,8 +178,7 @@
         </b-navbar-item>
       </b-navbar-dropdown>
 
-      <b-navbar-item href="https://investors.biohitechglobal.com/overview" target="_blank" rel="noopener nofollow"
-                     @click="lead">
+      <b-navbar-item @click="alert('Link no longer available')">
         Investors
       </b-navbar-item>
 
@@ -199,21 +195,6 @@
           </a>
         </div>
       </b-navbar-item>
-      <b-navbar-dropdown hoverable label="Admin"
-                         v-if="!!$role.hasAny('bht-it,bht-employee,website-editor,website-admin')">
-        <b-navbar-item href="#" class="is-disabled">
-          <span class="has-text-weight-bold is-italic">Hello {{name}}</span>
-        </b-navbar-item>
-
-        <b-navbar-item tag="nuxt-link" to="/admin">
-          Admin Tools
-        </b-navbar-item>
-
-        <b-navbar-item href="#" @click.prevent="$auth.logout">
-          Logout
-        </b-navbar-item>
-
-      </b-navbar-dropdown>
     </template>
   </b-navbar>
 </template>
@@ -229,13 +210,10 @@
       }
     },
     methods: {
-      lead() {
-        fbq('track', 'ViewContent');
+      alert(msg) {
+        alert(msg)
       }
     },
-    mounted() {
-      this.name = !!this.$auth.user ? JSON.parse(this.$auth.user).firstName : ''
-    }
   }
 </script>
 

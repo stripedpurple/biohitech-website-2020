@@ -10,14 +10,6 @@
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <div class="column is-full" v-if="!!$auth.user">
-            <nuxt-link class="button is-success" to="/news/edit">
-              <b-icon icon="plus"/>&nbsp;&nbsp;&nbsp;&nbsp;Add New Story
-            </nuxt-link>
-          </div>
-        </div>
-
-        <div class="columns is-multiline">
           <div class="column is-full">
             <b-field label="Filter by tags">
               <b-taginput
@@ -45,12 +37,6 @@
               <div class="buttons">
                 <nuxt-link :to="`/news/${article.slug}`" class="button is-primary">
                   Continue Reading
-                </nuxt-link>
-                <b-button type="is-danger" @click="confirmDelete(article._id)" v-if="!!$auth.user">
-                  <b-icon icon="delete"/>
-                </b-button>
-                <nuxt-link :to="`/news/edit?post=${article.slug}`" class="button is-info" v-if="!!$auth.user">
-                  <b-icon icon="pencil"/>
                 </nuxt-link>
               </div>
             </div>

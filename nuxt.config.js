@@ -50,9 +50,7 @@ export default {
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-    {src:'~/plugins/tracker.js', type: 'text/javascript'}
-  ],
+  plugins: [],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -61,11 +59,7 @@ export default {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-46962375-8'
-    }]
-  ],
+  buildModules: [],
   /*
   ** Nuxt.js modules
   */
@@ -74,45 +68,16 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
-    '@nuxtjs/proxy',
-    '@nuxtjs/recaptcha',
     '@nuxtjs/sitemap'
   ],
-
-  auth: {
-    plugins: [
-      '~/plugins/roles'
-    ],
-    strategies: {
-      local: {
-        endpoints: {
-          login: {url: '/auth/login', method: 'post'},
-          logout: {url: '/auth/logout', method: 'delete'},
-          user: {url: '/auth/current-user', method: 'get'},
-        },
-        // tokenRequired: true,
-        tokenType: '',
-        tokenName: 'x-biohitech-auth-token'
-      }
-    }
-  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:3000/api/v1',
-    prefix: '/api/v1',
+    baseURL: 'http://localhost:3000/api/',
+    prefix: '/api/',
     proxy: true
-  },
-  proxy: {
-    '/api/v1/**': 'http://127.0.0.1:9327'
-  },
-  recaptcha: {
-    hideBadge: true,
-    siteKey: '6Lfc280UAAAAALlR7O6OiMINHX7gFwErOx_gsvjN',
-    version: 3,
   },
   /*
   ** Build configuration

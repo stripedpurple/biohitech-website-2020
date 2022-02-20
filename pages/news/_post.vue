@@ -15,9 +15,6 @@
             </div>
 
             <BackButton/>
-            <nuxt-link :to="`/news/edit?post=${story.slug}`" class="button is-info" v-if="!!$auth.user">
-              <b-icon icon="pencil"/>&nbsp;&nbsp;&nbsp;&nbsp;Edit Story
-            </nuxt-link>
           </div>
           <div class="column is-3-desktop is-full">
             <tag-cloud :articleTags="story.tags" :allTags="allTags"/>
@@ -79,10 +76,16 @@
       }
     },
     async asyncData({$axios, route}) {
-      return {
-        allTags: await $axios.get(`/news/tags/getAll`).then(res => {
-          return res.data
+      let news = await $axios.get(`/news/summary.json`).then(res => {
+        return res.data.filter(x => {
+          return !(x.tags.indexOf('Case Study') > -1 || x.tags.indexOf('Research') > -1)
         })
+      });
+
+      let tags = [...new Set(news.map(article => article.tags).flat())]
+
+      return {
+        allTags: tags
       }
     },
     computed: {
@@ -117,8 +120,7 @@
         editable: false
       });
 
-      this.$axios.get(`/news/getById/${this.$route.params.post}`).then(res => {
-        console.log(res);
+      this.$axios.get(`/news/articles/${this.$route.params.post}.json`).then(res => {
         this.story.title = res.data.title;
         this.story.publicationDate = new Date(res.data.publicationDate);
         this.story.tags = res.data.tags;

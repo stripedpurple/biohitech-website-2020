@@ -10,11 +10,6 @@
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <div class="column is-full" v-if="!!$auth.user">
-            <nuxt-link class="button is-success" to="/careers/edit">
-              <b-icon icon="plus"/>&nbsp;&nbsp;&nbsp;&nbsp;Add New Job
-            </nuxt-link>
-          </div>
           <div class="column is-7-desktop is-full">
             <h2 class="title">Join Us to Help Revolutionize an Industry.</h2>
             <p>BioHiTech is always looking for bold individuals with a relentless passion for change. We want team
@@ -47,12 +42,6 @@
                 <nuxt-link :to="`/careers/${career.slug}`">
                   <b-button type="is-primary">Apply Now</b-button>
                 </nuxt-link>
-                <b-button type="is-danger" @click="confirmDelete(career._id)" v-if="!!$auth.user">
-                  <b-icon icon="delete"/>
-                </b-button>
-                <nuxt-link :to="`/careers/edit?post=${career.slug}`" class="button is-info" v-if="!!$auth.user">
-                  <b-icon icon="pencil"/>
-                </nuxt-link>
               </div>
             </div>
           </div>
@@ -77,31 +66,5 @@
         return {careers: res.data}
       })
     },
-    methods: {
-      confirmDelete(deleteKey) {
-        this.$buefy.dialog.confirm({
-          title: 'Deleting Job Posting',
-          message: 'Are you sure you want to <b>delete</b> this job? This action cannot be undone.',
-          confirmText: 'Delete',
-          type: 'is-danger',
-          hasIcon: true,
-          onConfirm: () => this.deleteJob(deleteKey)
-        })
-      },
-      deleteJob(deleteKey) {
-        this.$axios.delete(`/careers/deleteById/${deleteKey}`).then(res => {
-          if (res.status == 200) {
-            this.$buefy.toast.open({type: 'is-success', message: 'Job deleted!'});
-            this.careers = this.careers.filter(x => x._id !== deleteKey)
-          } else {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting job!'});
-          }
-        }).catch(err => {
-          if (err) {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting job!'});
-          }
-        })
-      }
-    }
   }
 </script>

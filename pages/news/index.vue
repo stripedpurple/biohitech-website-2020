@@ -10,14 +10,6 @@
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <div class="column is-full" v-if="!!$auth.user">
-            <nuxt-link class="button is-success" to="/news/edit">
-              <b-icon icon="plus"/>&nbsp;&nbsp;&nbsp;&nbsp;Add New Story
-            </nuxt-link>
-          </div>
-        </div>
-
-        <div class="columns is-multiline">
           <div class="column is-full">
             <b-field label="Filter by tags">
               <b-taginput
@@ -76,8 +68,7 @@
 </template>
 
 <script>
-import news from "~/pages/news/inde";
-  export default {
+export default {
     name: "index",
     data() {
       return {
@@ -102,16 +93,13 @@ import news from "~/pages/news/inde";
       }
     },
     async asyncData({$axios}) {
-      let news = await $axios.get(`/news/getAll`).then(res => {
+      let news = await $axios.get(`/news/summary.json`).then(res => {
         return res.data.filter(x => {
           return !(x.tags.indexOf('Case Study') > -1 || x.tags.indexOf('Research') > -1)
         })
       });
-      let tags = await $axios.get(`/news/tags/getAll`).then(res => {
-        return res.data.filter(x => {
-          return !(x === 'Case Study' || x === 'Research')
-        })
-      });
+
+      let tags = [...new Set(news.map(article => article.tags).flat())]
 
       return {
         news: news,
