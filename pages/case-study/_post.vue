@@ -76,10 +76,16 @@
       }
     },
     async asyncData({$axios, route}) {
-      return {
-        allTags: await $axios.get(`/news/tags/getAll`).then(res => {
-          return res.data
+      let news = await $axios.get(`/news/summary.json`).then(res => {
+        return res.data.filter(x => {
+          return !(x.tags.indexOf('Case Study') > -1 || x.tags.indexOf('Research') > -1)
         })
+      });
+
+      let tags = [...new Set(news.map(article => article.tags).flat())]
+
+      return {
+        allTags: tags
       }
     },
     computed: {

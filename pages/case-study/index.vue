@@ -93,16 +93,13 @@
       }
     },
     async asyncData({$axios}) {
-      let news = await $axios.get(`/news/getAll`).then(res => {
+      let news = await $axios.get(`/news/summary.json`).then(res => {
         return res.data.filter(x => {
           return !(x.tags.indexOf('Case Study') > -1 || x.tags.indexOf('Research') > -1)
         })
       });
-      let tags = await $axios.get(`/news/tags/getAll`).then(res => {
-        return res.data.filter(x => {
-          return !(x === 'Case Study' || x === 'Research')
-        })
-      });
+
+      let tags = [...new Set(news.map(article => article.tags).flat())]
 
       return {
         news: news,
@@ -110,30 +107,6 @@
       }
     },
     methods: {
-      confirmDelete(deleteKey) {
-        this.$buefy.dialog.confirm({
-          title: 'Deleting Job Posting',
-          message: 'Are you sure you want to <b>delete</b> this job? This action cannot be undone.',
-          confirmText: 'Delete',
-          type: 'is-danger',
-          hasIcon: true,
-          onConfirm: () => this.deleteJob(deleteKey)
-        })
-      },
-      deleteJob(deleteKey) {
-        this.$axios.delete(`/news/deleteById/${deleteKey}`).then(res => {
-          if (res.status == 200) {
-            this.$buefy.toast.open({type: 'is-success', message: 'Post deleted!'});
-            this.news = this.news.filter(x => x._id !== deleteKey)
-          } else {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting post!'});
-          }
-        }).catch(err => {
-          if (err) {
-            this.$buefy.toast.open({type: 'is-daanger', message: 'Error deleting post!'});
-          }
-        })
-      },
       getFilteredTags(text) {
         text = text.toLowerCase();
         return this.filteredTags = this.allTags.filter((option) => {

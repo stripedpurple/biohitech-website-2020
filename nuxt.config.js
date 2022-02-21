@@ -68,7 +68,7 @@ export default {
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/sitemap'
+    // '@nuxtjs/sitemap'
   ],
   /*
   ** Axios module configuration
@@ -88,22 +88,18 @@ export default {
     host: '0.0.0.0'
     // ult: localhost
   },
-  sitemap: {
-    hostname: 'https://biohitech.com',
-    exclude: [
-      '/wp-admin',
-      '/login',
-      '/teapot',
-      '/news/edit',
-      '/careers/edit',
-      '/admin',
-      '/admin/**',
-      '/customer-service/digester-support/contact',
-      '/customer-service/cloud-support/contact'
-    ],
-    routes: async () => {
-      const {data} = await axios.get('https://biohitech.com/api/v1/news/slugs')
-      return data.map((slug) => `/news/${slug.slug}`)
-    }
-  },
+  // sitemap: {
+  //   hostname: 'https://biohitech.com',
+  //   exclude: [
+  //     '/wp-admin',
+  //     '/login',
+  //     '/teapot',
+  //     '/customer-service/digester-support/contact',
+  //     '/customer-service/cloud-support/contact'
+  //   ],
+  //   routes: async () => {
+  //     const {data} = await axios.get('https://biohitech.com/api/v1/news/slugs')
+  //     return data.map((slug) => `/news/${slug.slug}`)
+  //   }
+  // },
 }

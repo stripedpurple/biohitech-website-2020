@@ -10,7 +10,7 @@
           <a href="tel:888-876-9300">888-876-9300</a><br>
           <nuxt-link to="/contact">Contact Online</nuxt-link>
           <br>
-          <nuxt-link to="/careers">Careers</nuxt-link>
+          <nuxt-link to="/">Careers</nuxt-link>
         </div>
 
         <div class="column is-one-third">
